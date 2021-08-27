@@ -508,6 +508,61 @@ func TestAgentUpdate(t *testing.T) {
 	}
 }
 
+func TestDeleteAgent(t *testing.T) {
+	dbMiddleware := postgres.NewDatabase(db)
+	agentRepo := postgres.NewAgentRepository(dbMiddleware, logger)
+
+	oID, err := uuid.NewV4()
+	require.Nil(t, err, fmt.Sprintf("got unexpected error: %s", err))
+
+	thID, err := uuid.NewV4()
+	require.Nil(t, err, fmt.Sprintf("got unexpected error: %s", err))
+
+	invalidID, err := uuid.NewV4()
+	require.Nil(t, err, fmt.Sprintf("got unexpected error: %s", err))
+
+	chID, err := uuid.NewV4()
+	require.Nil(t, err, fmt.Sprintf("got unexpected error: %s", err))
+
+	nameID, err := types.NewIdentifier("my-agent")
+	require.Nil(t, err, fmt.Sprintf("got unexpected error: %s", err))
+
+	ag := fleet.Agent{
+		Name:          nameID,
+		MFThingID:     thID.String(),
+		MFOwnerID:     oID.String(),
+		MFChannelID:   chID.String(),
+		OrbTags:       types.Tags{"testkey": "testvalue"},
+		AgentTags:     types.Tags{"testkey": "testvalue"},
+		AgentMetadata: types.Metadata{"testkey": "testvalue"},
+	}
+
+	err = agentRepo.Save(context.Background(), ag)
+	require.Nil(t, err, fmt.Sprintf("unexpected error: %s\n", err))
+
+	cases := map[string]struct {
+		ID      string
+		ownerID string
+		err     error
+	}{
+		"remove existing agent": {
+			ID:      ag.MFThingID,
+			ownerID: ag.MFOwnerID,
+			err:     nil,
+		},
+		"remove a non-existing agent": {
+			ID:      invalidID.String(),
+			ownerID: ag.MFOwnerID,
+			err:     nil,
+		},
+	}
+
+	for desc, tc := range cases {
+		err := agentRepo.Delete(context.Background(), tc.ownerID, tc.ID)
+		require.Nil(t, err, fmt.Sprintf("%s: failed to remove agent due to: %s", desc, err))
+	}
+}
+
 func testSortAgents(t *testing.T, pm fleet.PageMetadata, ths []fleet.Agent) {
 	switch pm.Order {
 	case "name":

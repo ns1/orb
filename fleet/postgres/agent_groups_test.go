@@ -311,6 +311,9 @@ func TestAgentGroupDelete(t *testing.T) {
 	oID, err := uuid.NewV4()
 	require.Nil(t, err, fmt.Sprintf("got unexpected error: %s", err))
 
+	invalidID, err := uuid.NewV4()
+	require.Nil(t, err, fmt.Sprintf("got unexpected error: %s", err))
+
 	chID, err := uuid.NewV4()
 	require.Nil(t, err, fmt.Sprintf("got unexpected error: %s", err))
 
@@ -340,7 +343,7 @@ func TestAgentGroupDelete(t *testing.T) {
 			err:     nil,
 		},
 		"remove a non-existing agent group": {
-			ID:      group.ID,
+			ID:      invalidID.String(),
 			ownerID: group.MFOwnerID,
 			err:     nil,
 		},

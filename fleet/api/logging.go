@@ -178,6 +178,22 @@ func (l loggingMiddleware) ValidateAgentGroup(ctx context.Context, token string,
 	return l.svc.ValidateAgentGroup(ctx, token, s)
 }
 
+func (l loggingMiddleware) RemoveAgent(ctx context.Context, token, thingID string) (err error) {
+	defer func(begin time.Time) {
+		if err != nil {
+			l.logger.Warn("method call: delete_agent",
+				zap.Error(err),
+				zap.Duration("duration", time.Since(begin)))
+		} else {
+			l.logger.Info("method call: delete_agent",
+				zap.Error(err),
+				zap.Duration("duration", time.Since(begin)))
+		}
+	}(time.Now())
+
+	return l.svc.RemoveAgent(ctx, token, thingID)
+}
+
 func NewLoggingMiddleware(svc fleet.Service, logger *zap.Logger) fleet.Service {
 	return &loggingMiddleware{logger, svc}
 }

@@ -220,6 +220,43 @@ func TestUpdateAgent(t *testing.T) {
 	}
 }
 
+func TestRemoveAgent(t *testing.T) {
+	users := flmocks.NewAuthService(map[string]string{token: email})
+
+	thingsServer := newThingsServer(newThingsService(users))
+	fleetService := newService(users, thingsServer.URL)
+
+	ag, err := createAgent(t, "my-agent", fleetService)
+	require.Nil(t, err, fmt.Sprintf("unexpetec error: %s", err))
+
+	cases := map[string]struct {
+		id    string
+		token string
+		err   error
+	}{
+		"remove existing agent": {
+			id:    ag.MFThingID,
+			token: token,
+			err:   nil,
+		},
+		"remove agent with wrong credentials": {
+			id:    ag.MFThingID,
+			token: invalidToken,
+			err:   fleet.ErrUnauthorizedAccess,
+		},
+		"remove non-existing agent": {
+			id:    wrongID,
+			token: token,
+			err:   nil,
+		},
+	}
+
+	for desc, tc := range cases {
+		err := fleetService.RemoveAgent(context.Background(), tc.token, tc.id)
+		assert.True(t, errors.Contains(err, tc.err), fmt.Sprintf("%s: expected %s got %s\n", desc, tc.err, err))
+	}
+}
+
 func createAgent(t *testing.T, name string, svc fleet.Service) (fleet.Agent, error) {
 	t.Helper()
 	aCopy := agent

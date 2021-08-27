@@ -337,3 +337,18 @@ func editAgentEndpoint(svc fleet.Service) endpoint.Endpoint {
 
 	}
 }
+
+func removeAgentEndpoint(svc fleet.Service) endpoint.Endpoint {
+	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
+		req := request.(viewResourceReq)
+
+		if err := req.validate(); err != nil {
+			return nil, err
+		}
+
+		if err := svc.RemoveAgent(ctx, req.token, req.id); err != nil {
+			return nil, err
+		}
+		return removeRes{}, nil
+	}
+}

@@ -9,6 +9,7 @@
 package mocks
 
 import (
+	"fmt"
 	"github.com/ns1labs/orb/fleet"
 	"sort"
 )
@@ -77,4 +78,8 @@ func sortAgents(pm fleet.PageMetadata, ags []fleet.Agent) []fleet.Agent {
 	}
 
 	return ags
+}
+
+func key(owner string, id string) string {
+	return fmt.Sprintf("%s-%s", owner, id)
 }
