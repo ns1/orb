@@ -47,7 +47,7 @@ require (
 	go.uber.org/zap v1.26.0
 	golang.org/x/exp v0.0.0-20231127185646-65229373498e
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231127180814-3a041ad873d4
-	google.golang.org/grpc v1.60.1
+	google.golang.org/grpc v1.61.0
 	google.golang.org/protobuf v1.32.0
 	gopkg.in/yaml.v2 v2.4.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -61,7 +61,7 @@ require (
 	github.com/google/uuid v1.4.0
 	github.com/prometheus/common v0.46.0 // indirect
 	go.opentelemetry.io/collector v0.91.0 // indirect
-	go.opentelemetry.io/collector/pdata v1.0.0
+	go.opentelemetry.io/collector/pdata v1.1.0
 	go.opentelemetry.io/otel/metric v1.21.0 // indirect
 	go.opentelemetry.io/otel/trace v1.21.0
 	google.golang.org/genproto v0.0.0-20231120223509-83a465c0220f // indirect
