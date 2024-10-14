@@ -6,7 +6,7 @@ PyHamcrest==2.1.0
 PyYAML==6.0.2
 retry==0.9.2
 selenium==4.23.1
-behavex==3.2.0
+behavex==4.0.7
 deepdiff==7.0.1
 jsonschema==4.23.0
 mkdocs==1.6.0
