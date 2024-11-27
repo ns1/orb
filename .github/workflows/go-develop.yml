@@ -88,7 +88,7 @@ jobs:
         uses: ./.github/actions/go-report
         with:
           go_report_threshold: 90.1 #grade A+
-          github_token: ${{ secrets.GH_ORB_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           github_owner: orb-community
           github_repo: orb
 
@@ -103,7 +103,7 @@ jobs:
       uses: peter-evans/repository-dispatch@v3
       if: ${{ needs.prebuild.outputs.docs == 'true' && github.event_name != 'pull_request' }}
       with:
-        token: ${{ secrets.GH_ORB_ACCESS_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         repository: orb-community/orb-website
         event-type: build-docs
         client-payload: '{"branch_name": "main"}'
@@ -579,24 +579,6 @@ jobs:
       - name: Build orb-ui
         run: |
           make ui
-
-      - name: Commit orb-ui-live on orb-live repo develop
-        if: github.event_name != 'pull_request'
-        run: |
-          git config --global user.email "${{secrets.GH_ORB_EMAIL}}"
-          git config --global user.name "${{secrets.GH_ORB_USER}}"
-          git config --global credential.helper cache
-          git clone -b develop https://${{secrets.GH_ORB_USER}}:${{secrets.GH_ORB_ACCESS_TOKEN}}@${{secrets.ORB_UI_REPO_URL}}          
-          cd orb-live
-          rm -rf ui
-          git add .
-          git commit -m "[NS1 Orb Bot] clean ui folder"
-          cp -rf ../ui .
-          cp -rf ../VERSION .
-          echo "${{ steps.commit_hash.outputs.sha_short }}" > COMMIT_HASH          
-          git add .
-          git commit -m "[NS1 Orb Bot] Update Orb Live UI for develop"
-          git push origin develop
           
       - name: Login to Docker Hub orbcommunity
         uses: docker/login-action@v3
@@ -633,47 +615,3 @@ jobs:
         if: ${{ needs.prebuild.outputs.migrate == 'true' }}
         run: |
           docker push -a orbcommunity/orb-migrate
-
-
-  publish-orb-live-stg:
-    needs:
-      - prebuild
-      - package-fleet
-      - package-policies
-      - package-sinker
-      - package-sinks
-      - package-maestro
-      - package-ui
-
-    runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request'
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Debug values
-        run: |
-          echo ${{ needs.prebuild.outputs.VERSION }}
-          echo ${{ github.event.inputs.pktvisor_tag }}
-        env:
-          VERSION: ${{ needs.prebuild.env.VERSION }}
-
-      - name: Get short commit hash to a variable
-        id: commit_hash
-        run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-          echo ${{ needs.prebuild.outputs.VERSION }} > VERSION
-
-      - name: Commit image tag on orb-live-manifest environment dev
-        run: |
-          git config --global user.email "${{secrets.GH_ORB_EMAIL}}"
-          git config --global user.name "${{secrets.GH_ORB_USER}}"
-          git config --global credential.helper cache
-          git clone https://${{secrets.GH_ORB_USER}}:${{secrets.GH_ORB_ACCESS_TOKEN}}@${{secrets.ORB_MANIFEST_REPO_URL}}
-          cd orb-live-manifest/stg
-          mv values.yaml .template/values.old
-          cat .template/values.yaml.tpl >> values.yaml
-          sed -i -e "s/IMAGE_TAG/${{ needs.prebuild.outputs.VERSION }}-${{ steps.commit_hash.outputs.sha_short }}/g" values.yaml
-          git add values.yaml
-          git add .template/values.old
-          git commit -m "[NS1 Orb Bot] Update image tag on stg environment"
-          git push origin main

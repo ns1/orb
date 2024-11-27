@@ -394,22 +394,6 @@ jobs:
           IMAGE_NAME: orbcommunity/orb-ui
         run: |
           make ui
-      - name: Commit orb-ui-live on orb-live repo production
-        run: |
-          git config --global user.email "${{secrets.GH_ORB_EMAIL}}"
-          git config --global user.name "${{secrets.GH_ORB_USER}}"
-          git config --global credential.helper cache
-          git clone -b main https://${{secrets.GH_ORB_USER}}:${{secrets.GH_ORB_ACCESS_TOKEN}}@${{ secrets.ORB_UI_REPO_URL }}
-          cd orb-live
-          rm -rf ui
-          git add .
-          git commit -m "[NS1 Orb Bot] clean ui folder"
-          cp -rf ../ui .
-          cp -rf ../VERSION .
-          echo "${{ steps.commit_hash.outputs.sha_short }}" > COMMIT_HASH
-          git add .
-          git commit -m "[NS1 Orb Bot] Update Orb Live UI for production"
-          git push origin main
           
       - name: Login to Docker Hub orbcommunity
         uses: docker/login-action@v3
@@ -423,7 +407,7 @@ jobs:
         run: |
           docker push -a orbcommunity/orb-ui
 
-  publish-orb-live-prd:
+  buildx:
     needs:
       - prebuild
       - package-fleet
@@ -431,67 +415,6 @@ jobs:
       - package-sinker
       - package-sinks
       - package-ui
-
-    runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request'
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Debug values
-        run: |
-          echo ${{ needs.prebuild.outputs.VERSION }}
-          echo ${{ github.event.inputs.pktvisor_tag }}
-        env:
-          VERSION: ${{ needs.prebuild.env.VERSION }}
-
-      - name: Get short commit hash to a variable
-        id: commit_hash
-        run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-          echo ${{ needs.prebuild.outputs.VERSION }} > VERSION
-
-      - name: Commit image tag on orb-live-manifest environment prod and ns1 environments
-        run: |
-          git config --global user.email "${{secrets.GH_ORB_EMAIL}}"
-          git config --global user.name "${{secrets.GH_ORB_USER}}"
-          git config --global credential.helper cache
-          git clone https://${{secrets.GH_ORB_USER}}:${{secrets.GH_ORB_ACCESS_TOKEN}}@${{ secrets.ORB_MANIFEST_REPO_URL }}
-          # Commit prd folder
-          cd orb-live-manifest/prod
-          mv values.yaml .template/values.old
-          cat .template/values.yaml.tpl >> values.yaml
-          sed -i -e "s/IMAGE_TAG/${{ needs.prebuild.outputs.VERSION }}-${{ steps.commit_hash.outputs.sha_short }}/g" values.yaml
-          git add values.yaml
-          git add .template/values.old
-          git commit -m "[NS1 Orb Bot] Update image tag on prod environment"
-          # Commit ns1 folder
-          cd ../ns1
-          mv values.yaml .template/values.old
-          cat .template/values.yaml.tpl >> values.yaml
-          sed -i -e "s/IMAGE_TAG/${{ needs.prebuild.outputs.VERSION }}-${{ steps.commit_hash.outputs.sha_short }}/g" values.yaml
-          git add values.yaml
-          git add .template/values.old
-          git commit -m "[NS1 Orb Bot] Update image tag on ns1 environment"
-          #commit on repo
-          git push origin main
-
-  post-slack-message:
-    needs: publish-orb-live-prd
-    runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Generating changelog and post it in slack channel
-        uses: ./.github/actions/slack-post
-        with:
-          branch: production
-          header: ":first_place_medal: :orb: *Deployed new features in orb.live* :orb: :rocket: :tada:"
-          github_repo: orb-community/orb
-          slack_channel: C041B9204CF # orb netdev slack channel ID
-          slack_api_token: ${{ secrets.SLACK_APP_TOKEN }}
-
-  buildx:
-    needs: publish-orb-live-prd
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
     steps:
