@@ -1,6 +1,7 @@
 module github.com/orb-community/orb
 
 go 1.22
+toolchain go1.22.5
 
 require (
 	github.com/andybalholm/brotli v1.0.6
@@ -15,7 +16,7 @@ require (
 	github.com/go-zoo/bone v1.3.0
 	github.com/gofrs/uuid v4.4.0+incompatible
 	github.com/golang/protobuf v1.5.3
-	github.com/hashicorp/go-version v1.6.0
+	github.com/hashicorp/go-version v1.7.0
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/lib/pq v1.10.9
 	github.com/mainflux/mainflux v0.0.0-20220415135135-92d8fb99bf82
@@ -29,7 +30,7 @@ require (
 	github.com/rubenv/sql-migrate v1.6.1
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.9.0
 	github.com/uber/jaeger-client-go v2.30.0+incompatible
 	go.opentelemetry.io/collector/component v0.91.0
 	go.opentelemetry.io/collector/config/configgrpc v0.91.0
@@ -209,7 +210,7 @@ require (
 	github.com/xdg-go/scram v1.1.2
 	github.com/xdg-go/stringprep v1.0.4 // indirect
 	go.opentelemetry.io/collector/receiver/otlpreceiver v0.91.0
-	go.opentelemetry.io/collector/semconv v0.91.0
+	go.opentelemetry.io/collector/semconv v0.114.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.46.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20231010175941-2dd684a91f00 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
