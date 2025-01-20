@@ -10,7 +10,7 @@ behavex==3.2.0
 deepdiff==7.0.1
 jsonschema==4.23.0
 mkdocs==1.6.0
-mkdocs-material==9.5.31
+mkdocs-material==9.5.49
 prometheus-client==0.20.0
 psutil==6.0.0
 webdriver-manager==4.0.2
