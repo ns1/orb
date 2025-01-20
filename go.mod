@@ -9,7 +9,7 @@ require (
 	github.com/eclipse/paho.mqtt.golang v1.4.3
 	github.com/fatih/structs v1.1.0
 	github.com/ghodss/yaml v1.0.0
-	github.com/go-cmd/cmd v1.4.2
+	github.com/go-cmd/cmd v1.4.3
 	github.com/go-kit/kit v0.13.0
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-zoo/bone v1.3.0
