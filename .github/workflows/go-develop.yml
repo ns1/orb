@@ -140,7 +140,7 @@ jobs:
           
       - name: Upload coverage to Codecov
         if: ${{ needs.prebuild.outputs.agent == 'true' || github.event_name != 'pull_request' }}
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           version: "v0.1.15"
           files: coverage.xml
@@ -179,7 +179,7 @@ jobs:
           
       - name: Upload coverage to Codecov
         if: ${{ needs.prebuild.outputs.orb == 'true' || github.event_name != 'pull_request' }}
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           version: "v0.1.15"
           files: coverage.xml
@@ -218,7 +218,7 @@ jobs:
           
       - name: Upload coverage to Codecov
         if: ${{ needs.prebuild.outputs.orb == 'true' || github.event_name != 'pull_request' }}
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           version: "v0.1.15"
           files: coverage.xml
@@ -257,7 +257,7 @@ jobs:
           
       - name: Upload coverage to Codecov
         if: ${{ needs.prebuild.outputs.orb == 'true' || github.event_name != 'pull_request' }}
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           version: "v0.1.15"
           files: coverage.xml
@@ -296,7 +296,7 @@ jobs:
           
       - name: Upload coverage to Codecov
         if: ${{ needs.prebuild.outputs.orb == 'true' || github.event_name != 'pull_request' }}
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           version: "v0.1.15"
           files: coverage.xml
@@ -335,7 +335,7 @@ jobs:
           
       - name: Upload coverage to Codecov
         if: ${{ needs.prebuild.outputs.orb == 'true' || github.event_name != 'pull_request' }}
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           version: "v0.1.15"
           files: coverage.xml
