@@ -16,6 +16,7 @@ Scenario: netprobe handler with default metric groups configuration
         And this agent's heartbeat shows that 1 groups are matching the agent
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for netprobe handler
         And remove the agent .yaml generated on each scenario
@@ -34,6 +35,7 @@ Scenario: netprobe handler with all metric groups enabled
         And this agent's heartbeat shows that 1 groups are matching the agent
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for netprobe handler
         And remove the agent .yaml generated on each scenario
@@ -69,6 +71,7 @@ Scenario: netprobe handler with only counters metric groups enabled
         And this agent's heartbeat shows that 1 groups are matching the agent
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for netprobe handler
         And remove the agent .yaml generated on each scenario
@@ -87,6 +90,7 @@ Scenario: netprobe handler with only quantiles metric groups enabled
         And this agent's heartbeat shows that 1 groups are matching the agent
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for netprobe handler
         And remove the agent .yaml generated on each scenario
@@ -105,6 +109,7 @@ Scenario: netprobe handler with only histograms metric groups enabled
         And this agent's heartbeat shows that 1 groups are matching the agent
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for netprobe handler
         And remove the agent .yaml generated on each scenario
@@ -123,6 +128,7 @@ Scenario: netprobe handler with counters and histograms metric groups enabled an
         And this agent's heartbeat shows that 1 groups are matching the agent
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for netprobe handler
         And remove the agent .yaml generated on each scenario
@@ -141,6 +147,7 @@ Scenario: netprobe handler with counters and quantiles metric groups enabled and
         And this agent's heartbeat shows that 1 groups are matching the agent
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for netprobe handler
         And remove the agent .yaml generated on each scenario
@@ -159,6 +166,7 @@ Scenario: netprobe handler with histograms and quantiles metric groups enabled a
         And this agent's heartbeat shows that 1 groups are matching the agent
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for netprobe handler
         And remove the agent .yaml generated on each scenario
@@ -181,6 +189,7 @@ Scenario: flow handler type netflow with default metric groups configuration
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -202,6 +211,7 @@ Scenario: flow handler type netflow with all metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -223,6 +233,7 @@ Scenario: flow handler type netflow with all metric groups disabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -243,6 +254,7 @@ Scenario: flow handler type netflow with only cardinality metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -264,6 +276,7 @@ Scenario: flow handler type netflow with only counters metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -285,6 +298,7 @@ Scenario: flow handler type netflow with only counters and by_bytes metric group
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -306,6 +320,7 @@ Scenario: flow handler type netflow with only counters and by_packets metric gro
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -327,6 +342,7 @@ Scenario: flow handler type netflow with only by_packets metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -347,6 +363,7 @@ Scenario: flow handler type netflow with only by_bytes metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -367,6 +384,7 @@ Scenario: flow handler type netflow with only top_geo metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -387,6 +405,7 @@ Scenario: flow handler type netflow with only top_geo and by_bytes metric groups
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -407,6 +426,7 @@ Scenario: flow handler type netflow with only top_geo and by_packets metric grou
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -428,6 +448,7 @@ Scenario: flow handler type netflow with only conversations metric groups enable
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -448,6 +469,7 @@ Scenario: flow handler type netflow with only conversations and cardinality metr
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -468,6 +490,7 @@ Scenario: flow handler type netflow with only conversations and by_bytes metric 
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -489,6 +512,7 @@ Scenario: flow handler type netflow with only conversations and by_packets metri
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -510,6 +534,7 @@ Scenario: flow handler type netflow with only top_ports metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -530,6 +555,7 @@ Scenario: flow handler type netflow with only top_ports and by_packets metric gr
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -551,6 +577,7 @@ Scenario: flow handler type netflow with only top_ports and by_bytes metric grou
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -572,6 +599,7 @@ Scenario: flow handler type netflow with only top_ips_ports metric groups enable
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -592,6 +620,7 @@ Scenario: flow handler type netflow with only top_ips_ports and by_bytes metric 
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -613,6 +642,7 @@ Scenario: flow handler type netflow with only top_ips_ports and by_packets metri
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -634,6 +664,7 @@ Scenario: flow handler type netflow with only top_interfaces metric groups enabl
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -654,6 +685,7 @@ Scenario: flow handler type netflow with only top_interfaces and by_bytes metric
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -675,6 +707,7 @@ Scenario: flow handler type netflow with only top_interfaces and by_packets metr
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -695,6 +728,7 @@ Scenario: flow handler type netflow with only top_ips metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -715,6 +749,7 @@ Scenario: flow handler type netflow with only top_ips and by_packets metric grou
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -736,6 +771,7 @@ Scenario: flow handler type netflow with only top_ips and by_bytes metric groups
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -757,6 +793,7 @@ Scenario: flow handler type netflow with only top_tos metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -777,6 +814,7 @@ Scenario: flow handler type netflow with only top_tos and by_bytes metric groups
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -798,6 +836,7 @@ Scenario: flow handler type netflow with only top_tos and by_packets metric grou
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -821,6 +860,7 @@ Scenario: flow handler type sflow with default metric groups configuration
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -842,6 +882,7 @@ Scenario: flow handler type sflow with all metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -863,6 +904,7 @@ Scenario: flow handler type sflow with all metric groups disabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -883,6 +925,7 @@ Scenario: flow handler type sflow with only cardinality metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -904,6 +947,7 @@ Scenario: flow handler type sflow with only counters metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -925,6 +969,7 @@ Scenario: flow handler type sflow with only counters and by_bytes metric groups 
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -946,6 +991,7 @@ Scenario: flow handler type sflow with only counters and by_packets metric group
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -967,6 +1013,7 @@ Scenario: flow handler type sflow with only by_packets metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -987,6 +1034,7 @@ Scenario: flow handler type sflow with only by_bytes metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -1007,6 +1055,7 @@ Scenario: flow handler type sflow with only top_geo metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -1026,6 +1075,7 @@ Scenario: flow handler type sflow with only top_geo and by_bytes metric groups e
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1047,6 +1097,7 @@ Scenario: flow handler type sflow with only top_geo and by_packets metric groups
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1068,6 +1119,7 @@ Scenario: flow handler type sflow with only conversations metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -1088,6 +1140,7 @@ Scenario: flow handler type sflow with only conversations and cardinality metric
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -1108,6 +1161,7 @@ Scenario: flow handler type sflow with only conversations and by_bytes metric gr
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1129,6 +1183,7 @@ Scenario: flow handler type sflow with only conversations and by_packets metric 
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1150,6 +1205,7 @@ Scenario: flow handler type sflow with only top_ports metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -1169,6 +1225,7 @@ Scenario: flow handler type sflow with only top_ports and by_bytes metric groups
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1190,6 +1247,7 @@ Scenario: flow handler type sflow with only top_ports and by_packets metric grou
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1211,6 +1269,7 @@ Scenario: flow handler type sflow with only top_ips_ports metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -1231,6 +1290,7 @@ Scenario: flow handler type sflow with only top_ips_ports and by_bytes metric gr
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1252,6 +1312,7 @@ Scenario: flow handler type sflow with only top_ips_ports and by_packets metric 
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1272,6 +1333,7 @@ Scenario: flow handler type sflow with only top_interfaces metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -1291,6 +1353,7 @@ Scenario: flow handler type sflow with only top_interfaces and by_bytes metric g
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1312,6 +1375,7 @@ Scenario: flow handler type sflow with only top_interfaces and by_packets metric
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1333,6 +1397,7 @@ Scenario: flow handler type sflow with only top_ips metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -1352,6 +1417,7 @@ Scenario: flow handler type sflow with only top_ips and by_bytes metric groups e
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1373,6 +1439,7 @@ Scenario: flow handler type sflow with only top_ips and by_packets metric groups
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1394,6 +1461,7 @@ Scenario: flow handler type sflow with only top_tos metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
 
@@ -1414,6 +1482,7 @@ Scenario: flow handler type sflow with only top_tos and by_bytes metric groups e
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1435,6 +1504,7 @@ Scenario: flow handler type sflow with only top_tos and by_packets metric groups
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual switch
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for flow handler
         And remove the agent .yaml generated on each scenario
@@ -1457,6 +1527,7 @@ Scenario: pcap handler with default metric groups configuration
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for pcap handler
         And remove the agent .yaml generated on each scenario
@@ -1477,6 +1548,7 @@ Scenario: pcap handler with all metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for pcap handler
         And remove the agent .yaml generated on each scenario
@@ -1497,6 +1569,7 @@ Scenario: pcap handler with all metric groups disabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for pcap handler
         And remove the agent .yaml generated on each scenario
@@ -1519,6 +1592,7 @@ Scenario: bgp handler with default metric groups configuration
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data bgp.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for bgp handler
         And remove the agent .yaml generated on each scenario
@@ -1539,6 +1613,7 @@ Scenario: bgp handler with all metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data bgp.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for bgp handler
         And remove the agent .yaml generated on each scenario
@@ -1559,6 +1634,7 @@ Scenario: bgp handler with all metric groups disabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
     And run mocked data bgp.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for bgp handler
         And remove the agent .yaml generated on each scenario
@@ -1581,6 +1657,7 @@ Scenario: dhcp handler with default metric groups configuration
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dhcp handler
         And remove the agent .yaml generated on each scenario
@@ -1601,6 +1678,7 @@ Scenario: dhcp handler with all metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dhcp handler
         And remove the agent .yaml generated on each scenario
@@ -1621,6 +1699,7 @@ Scenario: dhcp handler with all metric groups disabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dhcpv6.pcap, dhcp-flow.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dhcp handler
         And remove the agent .yaml generated on each scenario
@@ -1643,6 +1722,7 @@ Scenario: net handler with default metric groups configuration
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net handler
         And remove the agent .yaml generated on each scenario
@@ -1663,6 +1743,7 @@ Scenario: net handler with all metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net handler
         And remove the agent .yaml generated on each scenario
@@ -1702,6 +1783,7 @@ Scenario: net handler with only cardinality metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net handler
         And remove the agent .yaml generated on each scenario
@@ -1722,6 +1804,7 @@ Scenario: net handler with only counters metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net handler
         And remove the agent .yaml generated on each scenario
@@ -1742,6 +1825,7 @@ Scenario: net handler with only top_geo metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net handler
         And remove the agent .yaml generated on each scenario
@@ -1762,6 +1846,7 @@ Scenario: net handler with only top_ips metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net handler
         And remove the agent .yaml generated on each scenario
@@ -1784,6 +1869,7 @@ Scenario: dns handler with default metric groups configuration
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -1804,6 +1890,7 @@ Scenario: dns handler with all metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -1843,6 +1930,7 @@ Scenario: dns handler with only top_ecs metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -1863,6 +1951,7 @@ Scenario: dns handler with only top_qnames_details metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -1883,6 +1972,7 @@ Scenario: dns handler with only cardinality metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -1903,6 +1993,7 @@ Scenario: dns handler with only counters metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -1923,6 +2014,7 @@ Scenario: dns handler with only dns_transaction metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -1943,6 +2035,7 @@ Scenario: dns handler with only top_qnames metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -1963,6 +2056,7 @@ Scenario: dns handler with only top_ports metric groups enabled
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -2002,6 +2096,7 @@ Scenario: dns handler with only histograms and dns_transaction metric groups ena
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns handler
         And remove the agent .yaml generated on each scenario
@@ -2043,6 +2138,7 @@ Scenario: dns handler with default metric groups configuration (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2063,6 +2159,7 @@ Scenario: dns handler with all metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2102,6 +2199,7 @@ Scenario: dns handler with only top_ecs metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2122,6 +2220,7 @@ Scenario: dns handler with only top_ports metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2142,6 +2241,7 @@ Scenario: dns handler with only top_size metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2162,6 +2262,7 @@ Scenario: dns handler with only xact_times metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2182,6 +2283,7 @@ Scenario: dns handler with only cardinality metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2202,6 +2304,7 @@ Scenario: dns handler with only counters metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2222,6 +2325,7 @@ Scenario: dns handler with only top_qnames metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2242,6 +2346,7 @@ Scenario: dns handler with only quantiles metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2262,6 +2367,7 @@ Scenario: dns handler with only top_qtypes metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2282,6 +2388,7 @@ Scenario: dns handler with only top_rcodes metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for dns-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2304,6 +2411,7 @@ Scenario: net handler with default metric groups configuration (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2324,6 +2432,7 @@ Scenario: net handler with all metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2363,6 +2472,7 @@ Scenario: net handler with only cardinality metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2383,6 +2493,7 @@ Scenario: net handler with only counters metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2403,6 +2514,7 @@ Scenario: net handler with only top_geo metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2423,6 +2535,7 @@ Scenario: net handler with only top_ips metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net-v2 handler
         And remove the agent .yaml generated on each scenario
@@ -2443,6 +2556,7 @@ Scenario: net handler with only quantiles metric groups enabled (v2)
         And this agent's heartbeat shows that 1 policies are applied and all has status running
         And run mocked data dns_ipv4_tcp.pcap, dns_ipv4_udp.pcap, dns_ipv6_tcp.pcap, dns_ipv6_udp.pcap, dns_udp_mixed_rcode.pcap, dns_udp_tcp_random.pcap, ecs.pcap, ipfix.pcap, ecmp.pcap, ipfix.pcap, nf9.pcap, dnssec.pcap, dhcpv6.pcap on the created virtual interface
         And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
         And referred sink must have active state on response within 240 seconds
     Then metrics must be correctly generated for net-v2 handler
         And remove the agent .yaml generated on each scenario
