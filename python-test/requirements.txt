@@ -1,5 +1,5 @@
 behave==1.2.6
-ciso8601==2.3.1
+ciso8601==2.3.2
 colorlog==6.8.2
 docker==7.1.0
 PyHamcrest==2.1.0
