@@ -196,6 +196,13 @@ func (e *baseExporter) injectScopeLogsAttribute(logsScope plog.ScopeLogs, attrib
 	return logsScope
 }
 
+func (e *baseExporter) shutdown(_ context.Context) error {
+	if e.config.Client != nil && (*e.config.Client).IsConnected() {
+		(*e.config.Client).Disconnect(0)
+	}
+	return nil
+}
+
 func (e *baseExporter) pushLogs(ctx context.Context, ld plog.Logs) error {
 	tr := plogotlp.NewExportRequest()
 	ref := tr.Logs().ResourceLogs().AppendEmpty()

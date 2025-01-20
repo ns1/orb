@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"go.opentelemetry.io/otel/sdk/metric"
+	"go.opentelemetry.io/otel/trace/noop"
 
 	"github.com/orb-community/orb/agent/otel"
 	"go.uber.org/zap"
@@ -13,7 +14,6 @@ import (
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
-	"go.opentelemetry.io/otel/trace"
 )
 
 const (
@@ -55,7 +55,7 @@ func CreateDefaultSettings(logger *zap.Logger) exporter.CreateSettings {
 	return exporter.CreateSettings{
 		TelemetrySettings: component.TelemetrySettings{
 			Logger:         logger,
-			TracerProvider: trace.NewNoopTracerProvider(),
+			TracerProvider: noop.NewTracerProvider(),
 			MeterProvider:  metric.NewMeterProvider(),
 		},
 		BuildInfo: component.NewDefaultBuildInfo(),
@@ -134,7 +134,8 @@ func CreateMetricsExporter(
 		// explicitly disable since we rely on http.Client timeout logic.
 		exporterhelper.WithTimeout(exporterhelper.TimeoutSettings{Timeout: 0}),
 		exporterhelper.WithRetry(oCfg.RetrySettings),
-		exporterhelper.WithQueue(oCfg.QueueSettings))
+		exporterhelper.WithQueue(oCfg.QueueSettings),
+		exporterhelper.WithShutdown(oce.shutdown))
 }
 
 func CreateLogsExporter(

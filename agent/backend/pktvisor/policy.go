@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/orb-community/orb/agent/policies"
 	"go.uber.org/zap"
@@ -60,8 +61,11 @@ func (p *pktvisorBackend) RemovePolicy(data policies.PolicyData) error {
 	} else {
 		name = data.Name
 	}
-	err := p.request(fmt.Sprintf("policies/%s", name), &resp, http.MethodDelete, http.NoBody, "application/json", RemovePolicyTimeout)
-	if err != nil {
+	if err := p.request(fmt.Sprintf("policies/%s", name), &resp, http.MethodDelete, http.NoBody, "application/json", RemovePolicyTimeout); err != nil {
+		if strings.Contains(err.Error(), "404") {
+			p.logger.Warn("ignoring error from removing a policy not found", zap.String("policy_id", data.ID), zap.String("policy_name", name))
+			return nil
+		}
 		return err
 	}
 	return nil
