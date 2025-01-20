@@ -249,6 +249,18 @@ agent_full:
 	  --tag=$(ORB_DOCKERHUB_REPO)/$(DOCKER_IMAGE_NAME_PREFIX)-agent-full:$(ORB_VERSION)-$(COMMIT_HASH) \
 	  -f agent/docker/Dockerfile.full .
 
+agent_custom:
+	docker build --no-cache \
+	  --build-arg GOARCH=$(GOARCH) \
+	  --build-arg PKTVISOR_TAG=$(PKTVISOR_TAG) \
+	  --build-arg DIODE_TAG=$(DIODE_TAG) \
+	  --build-arg ORB_TAG=${REF_TAG} \
+	  --build-arg OTEL_TAG=latest \
+	  --tag=$(ORB_DOCKERHUB_REPO)/$(DOCKER_IMAGE_NAME_PREFIX)-agent-custom:$(REF_TAG) \
+	  --tag=$(ORB_DOCKERHUB_REPO)/$(DOCKER_IMAGE_NAME_PREFIX)-agent-custom:$(ORB_VERSION) \
+	  --tag=$(ORB_DOCKERHUB_REPO)/$(DOCKER_IMAGE_NAME_PREFIX)-agent-custom:$(ORB_VERSION)-$(COMMIT_HASH) \
+	  -f agent/docker/Dockerfile.custom .
+
 agent_debug:
 	docker build \
 	  --build-arg PKTVISOR_TAG=$(PKTVISOR_DEBUG_TAG) \

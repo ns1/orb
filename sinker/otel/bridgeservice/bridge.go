@@ -21,7 +21,7 @@ type BridgeService interface {
 	GetDataSetsFromAgentGroups(ctx context.Context, mfOwnerId string, agentGroupIds []string) (map[string]string, error)
 	NotifyActiveSink(ctx context.Context, mfOwnerId, sinkId, state, message string) error
 	GetSinkIdsFromPolicyID(ctx context.Context, mfOwnerId string, policyID string) (map[string]string, error)
-	IncreamentMessageCounter(publisher, subtopic, channel, protocol string)
+	IncrementMessageCounter(publisher, subtopic, channel, protocol string)
 }
 
 func NewBridgeService(logger *zap.Logger,

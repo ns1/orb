@@ -215,3 +215,83 @@ jobs:
       - name: Push agent container orbcommunity
         if: github.event_name != 'pull_request'
         run: docker push -a orbcommunity/orb-agent-full
+
+  package-agent-with-otelcol-orb:
+    needs: package
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get branch name
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+
+      - name: Debug branch name
+        run: echo ${{ env.BRANCH_NAME }}
+
+      - name: Generate ref tag (main)
+        if: ${{ env.BRANCH_NAME == 'main' || github.event.client_payload.branch_name == 'main' }}
+        run: |
+          echo "REF_TAG=latest" >> $GITHUB_ENV
+
+      - name: Generate ref tag (develop)
+        if: ${{ env.BRANCH_NAME == 'develop' || github.event.client_payload.branch_name == 'develop' }}
+        run: |
+          echo "REF_TAG=develop" >> $GITHUB_ENV
+
+      - name: Debug ref tag
+        run: echo ${{ env.REF_TAG }}
+
+      - name: Append suffix on VERSION file for develop build
+        if: ${{ env.BRANCH_NAME == 'develop' || github.event.client_payload.branch_name == 'develop' }}
+        run: |
+          echo "`cat ${{github.workspace}}/VERSION`-${{ env.REF_TAG }}" > VERSION
+
+      - name: Get VERSION
+        run: |
+          echo "VERSION=`cat ${{github.workspace}}/VERSION`" >> $GITHUB_ENV
+
+      - name: Debug version
+        run: echo ${{ env.VERSION }}
+
+      - name: Replace crashpad and geo-db params
+        run: |
+          ESCAPED_REPLACE_LINE1_NEW=$(printf '%s\n' "pvOptions = append(pvOptions, \"--cp-token\", \"${{ secrets.CRASHPAD_TOKEN }}\")" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE2_NEW=$(printf '%s\n' "pvOptions = append(pvOptions, \"--cp-url\", \"${{ secrets.CRASHPAD_URL }}\")" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE3_NEW=$(printf '%s\n' "pvOptions = append(pvOptions, \"--cp-path\", \"/usr/local/sbin/crashpad_handler\")" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE4_NEW=$(printf '%s\n' "pvOptions = append(pvOptions, \"--default-geo-city\", \"/geo-db/city.mmdb\")" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE5_NEW=$(printf '%s\n' "pvOptions = append(pvOptions, \"--default-geo-asn\", \"/geo-db/asn.mmdb\")" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE6_NEW=$(printf '%s\n' "pvOptions = append(pvOptions, \"--default-service-registry\", \"/iana/custom-iana.csv\")" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE1_OLD=$(printf '%s\n' "// pvOptions = append(pvOptions, \"--cp-token\", PKTVISOR_CP_TOKEN)" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE2_OLD=$(printf '%s\n' "// pvOptions = append(pvOptions, \"--cp-url\", PKTVISOR_CP_URL)" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE3_OLD=$(printf '%s\n' "// pvOptions = append(pvOptions, \"--cp-path\", PKTVISOR_CP_PATH)" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE4_OLD=$(printf '%s\n' "// pvOptions = append(pvOptions, \"--default-geo-city\", \"/geo-db/city.mmdb\")" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE5_OLD=$(printf '%s\n' "// pvOptions = append(pvOptions, \"--default-geo-asn\", \"/geo-db/asn.mmdb\")" | sed -e 's/[\/&]/\\&/g')
+          ESCAPED_REPLACE_LINE6_OLD=$(printf '%s\n' "// pvOptions = append(pvOptions, \"--default-service-registry\", \"/iana/custom-iana.csv\")" | sed -e 's/[\/&]/\\&/g')
+          sed -i -e "s/$ESCAPED_REPLACE_LINE1_OLD/$ESCAPED_REPLACE_LINE1_NEW/g" agent/backend/pktvisor/pktvisor.go      
+          sed -i -e "s/$ESCAPED_REPLACE_LINE2_OLD/$ESCAPED_REPLACE_LINE2_NEW/g" agent/backend/pktvisor/pktvisor.go 
+          sed -i -e "s/$ESCAPED_REPLACE_LINE3_OLD/$ESCAPED_REPLACE_LINE3_NEW/g" agent/backend/pktvisor/pktvisor.go
+          sed -i -e "s/$ESCAPED_REPLACE_LINE4_OLD/$ESCAPED_REPLACE_LINE4_NEW/g" agent/backend/pktvisor/pktvisor.go
+          sed -i -e "s/$ESCAPED_REPLACE_LINE5_OLD/$ESCAPED_REPLACE_LINE5_NEW/g" agent/backend/pktvisor/pktvisor.go
+          sed -i -e "s/$ESCAPED_REPLACE_LINE6_OLD/$ESCAPED_REPLACE_LINE6_NEW/g" agent/backend/pktvisor/pktvisor.go
+
+      - name: Build orb-agent with otelcol-orb
+        shell: bash
+        run: |
+          if [ "${{ github.event.inputs.pktvisor_tag }}" == "" ]; then
+            DIODE_TAG=${{ env.REF_TAG }} PKTVISOR_TAG=${{ env.REF_TAG }} ORB_TAG=${{ env.REF_TAG }} make agent_custom
+          else
+            DIODE_TAG=${{ github.event.inputs.diode_tag }} PKTVISOR_TAG=${{ github.event.inputs.pktvisor_tag }} ORB_TAG=${{ github.event.inputs.orb_tag }} make agent_custom
+          fi
+
+      - name: Login to Docker Hub orbcommunity
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.ORB_DOCKERHUB_USERNAME }}
+          password: ${{ secrets.ORB_DOCKERHUB_TOKEN }}
+
+      - name: Push agent container orbcommunity
+        if: github.event_name != 'pull_request'
+        run: docker push -a orbcommunity/orb-agent-otelcol-orb

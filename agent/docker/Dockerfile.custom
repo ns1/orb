@@ -1,0 +1,31 @@
+ARG ORB_TAG=develop
+ARG PKTVISOR_TAG=develop
+ARG DIODE_TAG=develop
+ARG OTEL_TAG=latest
+
+FROM orbcommunity/orb-agent:${ORB_TAG} AS orb
+
+FROM orbcommunity/diode-agent:${DIODE_TAG} AS diode
+
+FROM orbcommunity/otelcol-orb-agent:${OTEL_TAG} AS otelcol-orb
+
+FROM orbcommunity/pktvisor:${PKTVISOR_TAG}
+
+# adding orb-agent
+RUN mkdir /opt/orb
+COPY --from=orb /usr/local/bin/orb-agent /usr/local/bin/orb-agent
+COPY ./agent/docker/agent_default_custom.yaml /opt/orb/agent_default.yaml
+COPY --from=orb /usr/local/bin/orb-agent-entry.sh /usr/local/bin/orb-agent-entry.sh
+COPY --from=orb /run-agent.sh /run-agent.sh
+
+# adding diode-agent
+COPY --from=diode /usr/local/bin/diode-agent /usr/local/bin/diode-agent
+
+# adding suzieq patched
+COPY --from=diode /root/.suzieq /root/.suzieq
+
+COPY --from=otelcol-orb /otelcol-orb /usr/local/bin/otelcol-orb
+
+RUN chmod a+x /run-agent.sh
+
+ENTRYPOINT [ "/usr/local/bin/orb-agent-entry.sh" ]
