@@ -26,6 +26,37 @@ Scenario: General smoke test to validate private agent image
 
 
 @smoke
+  Scenario: Full happy path using new orb account
+    Given that there is an unregistered valid email with 12345678 password
+    When the Orb user request this account registration with email used for testing process as company and Test process as fullname
+    Then the status code must be 201
+      And account is registered with email, with password, email used for testing process company and Test process full name
+    Given that a sink with default configuration type already exists
+    When a new agent is created with 1 orb tag(s)
+        And the agent container is started on an available port
+        And the agent status is online
+        And referred agent is subscribed to 1 group
+        And 1 simple policies are applied to the group
+    Then backends route must be enabled
+        And handlers route must be enabled
+        And taps route must be enabled
+        And inputs route must be enabled
+        And pktvisor state is running
+        And this agent's heartbeat shows that 1 groups are matching the agent
+        And this agent's heartbeat shows that 1 policies are applied and all has status running
+        And the container logs contain the message "policy applied successfully" referred to each policy within 30 seconds
+        And the container logs that were output after all policies have been applied contain the message "scraped metrics for policy" referred to each applied policy within 180 seconds
+        And referred sink must have active state on response within 120 seconds
+        And 2 dataset(s) have validity valid and 0 have validity invalid in 30 seconds
+    When this agent is removed
+        And one of applied policies is removed
+        And 1 group(s) to which the agent is linked is removed
+        And remove 1 of the linked sinks from orb
+        And the dataset is removed
+
+
+
+@smoke
 Scenario: Test agents backend routes
     Given the Orb user has a registered account
         And the Orb user logs in
