@@ -1,6 +1,5 @@
 FROM golang:1.22-alpine
 
-LABEL author="Everton Haise Taques<everton.taques@encora.com>"
 LABEL maintainer="netboxlabs"
 LABEL version="1.0.0"
 

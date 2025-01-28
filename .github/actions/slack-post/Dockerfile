@@ -1,6 +1,5 @@
 FROM ubuntu:20.04
 
-LABEL author="Everton Haise Taques<everton.taques@encora.com>"
 LABEL maintainer="netboxlabs"
 LABEL version="1.0.0"
 
