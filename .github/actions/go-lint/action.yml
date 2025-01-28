@@ -1,5 +1,4 @@
 name: 'go-lint'
-author: 'Everton Haise Taques<everton.taques@encora.com>'
 description: 'netboxlabs'
 
 runs:
