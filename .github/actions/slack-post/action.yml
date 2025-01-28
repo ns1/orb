@@ -1,5 +1,4 @@
 name: 'slack-post'
-author: 'Everton Taques<everton.taques@encora.com>'
 description: 'netboxlabs'
 
 inputs:
